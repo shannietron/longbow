@@ -15,7 +15,7 @@ public class lerp : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		startPos = transform.position;
-		endPos = transform.position + Vector3.forward * distance;
+		endPos = transform.position + Vector3.right * distance;
 
 
 		
