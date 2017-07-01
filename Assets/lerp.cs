@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class lerp : MonoBehaviour {
 
-	public GameObject weeble;
 	private Vector3 startPos;
 	private Vector3 endPos;
 	public float distance = 30f;
 	public float lerpTime = 5f;
 	private float currentLerpTime;
+	private bool dir = false;
 
 
 	// Use this for initialization
 	void Start () {
 		startPos = transform.position;
 		endPos = transform.position + Vector3.right * distance;
-
-
-		
 	}
 	
 	// Update is called once per frame
@@ -26,10 +23,18 @@ public class lerp : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			currentLerpTime = 0f;
 		}
-
 		currentLerpTime += Time.deltaTime;
 		if (currentLerpTime > lerpTime) {
 			currentLerpTime	= 0f;
+			startPos = endPos;
+			if (!dir) {
+				endPos = transform.position + Vector3.left * distance;
+				dir = true;
+			} else {
+				endPos = transform.position + Vector3.right * distance;
+				dir = false;
+			}
+
 		}
 
 		float perc = currentLerpTime / lerpTime;
